@@ -35,7 +35,7 @@ Route::middleware('auth', 'verified')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
-        Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technologies:slug']);
+        Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
     });
 
 require __DIR__ . '/auth.php';
