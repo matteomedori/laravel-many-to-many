@@ -77,8 +77,10 @@ class TechnologyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Technology $technology)
     {
-        //
+        $name = $technology->name;
+        $technology->delete();
+        return redirect()->route('admin.technologies.index')->with('messages', "Tecnologia '$name' cancellata correttamente");
     }
 }
