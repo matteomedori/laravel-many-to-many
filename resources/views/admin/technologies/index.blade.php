@@ -2,7 +2,7 @@
 
 @section('content')
     <h2 class="my-3">Lista delle tecnologie</h2>
-
+    <a href="{{ route('admin.technologies.create') }}" class="btn btn-primary btn-sm">Aggiungi una nuova tecnologia</a>
 
     {{-- show toast if exist a message --}}
     @if (session('messages'))
