@@ -38,6 +38,29 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <div class="mb-3">
+            <div>
+                <label for="technologies" class="form-label">Tecnologie:</label>
+            </div>
+            @foreach ($technologies as $technology)
+                <div class="form-check form-check-inline">
+                    @if ($errors->any())
+                        <input class="form-check-input" type="checkbox" id="tech-{{ $technology->id }}"
+                            name="technologies[]" value="{{ $technology->id }}"
+                            {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="tech-{{ $technology->id }}">{{ $technology->name }}</label>
+                    @else
+                        <input class="form-check-input" type="checkbox" id="tech-{{ $technology->id }}"
+                            name="technologies[]" value="{{ $technology->id }}"
+                            {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="tech-{{ $technology->id }}">{{ $technology->name }}</label>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+        @error('technologies')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <div class="mb-3">
             <label for="type_id" class="form-label">Tipo</label>
             <select class="form-select @error('type_id') is-invalid @enderror" aria-label="Default select example"
                 name="type_id">

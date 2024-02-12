@@ -69,7 +69,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -79,9 +81,14 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $project->update($data);
         $project->slug = Str::of($project->title)->slug('-');
-        $project->save();
+        $project->update($data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
 
         return redirect()->route('admin.projects.index')->with('messages', "Progetto '$project->title' modificato correttamente");;
     }

@@ -27,7 +27,8 @@ class UpdateProjectRequest extends FormRequest
             'description' => 'string|nullable',
             'languages' => 'required|max:60',
             'frameworks' => 'required|max:40',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|exists:technologies,id'
         ];
     }
 
@@ -43,6 +44,7 @@ class UpdateProjectRequest extends FormRequest
             'frameworks.required' => 'Frameworks utilizzati richiesti',
             'frameworks.max' => 'Numero massimo caratteri: :max',
             'type_id.exists' => "L'id del tipo selezionato non è valido",
+            'technologies.exists' => "L'id della tecnologia selezionata non è valido",
         ];
     }
 }
