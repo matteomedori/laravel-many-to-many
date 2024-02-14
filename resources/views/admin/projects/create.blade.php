@@ -56,7 +56,7 @@
             <label for="type_id" class="form-label">Tipo</label>
             <select class="form-select @error('type_id') is-invalid @enderror" aria-label="Default select example"
                 name="type_id">
-                <option selected>Seleziona tipo progetto</option>
+                <option value="" selected>Seleziona tipo progetto</option>
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}" @if (old('type_id') == $type->id) selected @endif>
                         {{ $type->name }}</option>
